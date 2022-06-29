@@ -5,6 +5,8 @@ import java.awt.event.*;
 import java.awt.*;
 import java.io.File;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * GUI for the Wumpus World. Only supports worlds of 
@@ -12,7 +14,7 @@ import java.util.Vector;
  * 
  * @author Johan Hagelbäck
  */
-public class GUI implements ActionListener
+public class GUI extends JFrame implements ActionListener
 {
     private JFrame frame;
     private JPanel gamepanel;
@@ -33,12 +35,65 @@ public class GUI implements ActionListener
     private ImageIcon l_player_down;
     private ImageIcon l_player_left;
     private ImageIcon l_player_right;
+    private int passos = 0;
     
     /**
      * Creates and start the GUI.
      */
     public GUI()
     {
+        setLocationRelativeTo(null);
+        KeyboardFocusManager
+            .getCurrentKeyboardFocusManager()
+            .addKeyEventDispatcher(new KeyEventDispatcher() {
+                    @Override
+                    public boolean dispatchKeyEvent(KeyEvent e) {
+                        if (e.getID() == e.KEY_RELEASED) {
+                            switch(e.getKeyCode()) {
+                                case KeyEvent.VK_LEFT: {
+                                    w.doAction(World.A_TURN_LEFT);
+                                    updateGame();
+                                }
+                                break;
+                                case KeyEvent.VK_RIGHT: {
+                                    w.doAction(World.A_TURN_RIGHT);
+                                    updateGame();
+                                }
+                                break;
+                                case KeyEvent.VK_UP: {
+                                    w.doAction(World.A_MOVE);
+                                    updateGame();
+                                }
+                                break;
+                                case KeyEvent.VK_N: {
+                                    clickedNew();
+                                }
+                                break;
+                                case KeyEvent.VK_SPACE: {
+                                    w.doAction(World.A_CLIMB);
+                                    updateGame();
+                                }
+                                case KeyEvent.VK_ENTER: {
+                                    w.doAction(World.A_GRAB);
+                                    updateGame();
+                                }
+                                break;
+                                case KeyEvent.VK_C: {
+                                    w.doAction(World.A_SHOOT);
+                                    updateGame();
+                                }
+                                break;
+                            }
+                        }
+                        if(e.getID() == e.KEY_RELEASED 
+                                && e.getKeyCode() == KeyEvent.VK_ESCAPE){
+                            System.exit(0);
+                            return true;
+                        }
+                        return false;
+                    }
+                });
+        
         if (!checkResources())
         {
             JOptionPane.showMessageDialog(null, "Unable to start GUI. Missing icons.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -67,6 +122,10 @@ public class GUI implements ActionListener
         l_player_right = new ImageIcon("gfx/PR.png");
         
         createWindow();
+    }
+    
+    private void fecharJanela(){
+        this.dispose();
     }
     
     /**
@@ -111,7 +170,7 @@ public class GUI implements ActionListener
     private void createWindow()
     {
         frame = new JFrame("Wumpus World");
-        frame.setSize(820, 640);
+        frame.setSize(870, 640);
         frame.getContentPane().setLayout(new FlowLayout());
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         
@@ -138,47 +197,39 @@ public class GUI implements ActionListener
         
         //Add buttons panel
         JPanel buttons = new JPanel();
-        buttons.setPreferredSize(new Dimension(200,600));
+        buttons.setPreferredSize(new Dimension(250,600));
         buttons.setLayout(new FlowLayout());
         //Status label
         status = new JLabel("", SwingConstants.CENTER);
-        status.setPreferredSize(new Dimension(200,25));
+        status.setPreferredSize(new Dimension(250,25));
         buttons.add(status);
         //Score label
         score = new JLabel("Score: 0", SwingConstants.CENTER);
         score.setPreferredSize(new Dimension(200,25));
         buttons.add(score);
         //Buttons
-        JButton bl = new JButton(new ImageIcon("gfx/TL.png"));
-        bl.setActionCommand("TL");
-        bl.addActionListener(this);
-        buttons.add(bl);
-        JButton bf = new JButton(new ImageIcon("gfx/MF.png"));
-        bf.setActionCommand("MF");
-        bf.addActionListener(this);
-        buttons.add(bf);
-        JButton br = new JButton(new ImageIcon("gfx/TR.png"));
-        br.setActionCommand("TR");
-        br.addActionListener(this);
-        buttons.add(br);
-        JButton bg = new JButton("Grab");
-        bg.setPreferredSize(new Dimension(45,22));
+        JButton bg = new JButton("Grab - Enter");
+        bg.setPreferredSize(new Dimension(90,22));
         bg.setActionCommand("GRAB");
         bg.addActionListener(this);
+        bg.setFocusable(false);
         buttons.add(bg);
-        JButton bc = new JButton("Climb");
-        bc.setPreferredSize(new Dimension(55,22));
+        JButton bc = new JButton("Climb - Espaço");
+        bc.setPreferredSize(new Dimension(120,22));
         bc.setActionCommand("CLIMB");
         bc.addActionListener(this);
+        bc.setFocusable(false);
         buttons.add(bc);
-        JButton bs = new JButton("Shoot");
-        bs.setPreferredSize(new Dimension(65,22));
+        JButton bs = new JButton("Shoot - C");
+        bs.setPreferredSize(new Dimension(80,22));
         bs.setActionCommand("SHOOT");
         bs.addActionListener(this);
+        bs.setFocusable(false);
         buttons.add(bs);
-        JButton ba = new JButton("Run Solving Agent");
+        JButton ba = new JButton("Agent Inteligente");
         ba.setActionCommand("AGENT");
         ba.addActionListener(this);
+        ba.setFocusable(false);
         buttons.add(ba);
         //Add a delimiter
         JLabel l = new JLabel("");
@@ -192,17 +243,19 @@ public class GUI implements ActionListener
         }
         items.add("Random");
         mapList = new JComboBox(items);
-        mapList.setPreferredSize(new Dimension(180,25));
+        mapList.setPreferredSize(new Dimension(200,25));
+        mapList.setFocusable(false);
         buttons.add(mapList);
-        JButton bn = new JButton("New Game");
+        JButton bn = new JButton("New Game - N");
         bn.setActionCommand("NEW");
         bn.addActionListener(this);
+        bn.setFocusable(false);
         buttons.add(bn);
         
         frame.getContentPane().add(buttons);
         
         updateGame();
-        
+        frame.setLocationRelativeTo(null);
         //Show window
         frame.setVisible(true);
     }
@@ -246,19 +299,7 @@ public class GUI implements ActionListener
         }
         if (e.getActionCommand().equals("NEW"))
         {
-            String s = (String)mapList.getSelectedItem();
-            if (s.equalsIgnoreCase("Random"))
-            {
-                w = MapGenerator.getRandomMap((int)System.currentTimeMillis()).generateWorld();
-            }
-            else
-            {
-                int i = Integer.parseInt(s);
-                i--;
-                w = maps.get(i).generateWorld();
-            }
-            agent = new MyAgent(w);
-            updateGame();
+            clickedNew();
         }
         if (e.getActionCommand().equals("AGENT"))
         {
@@ -266,9 +307,44 @@ public class GUI implements ActionListener
             {
                 agent = new MyAgent(w);
             }
-            agent.doAction();
-            updateGame();
+//            agent.doAction();
+//            updateGame();
+//            while (!w.gameOver()) {
+//                passos++;
+                
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+                        agent.doAction();
+                        updateGame();
+                        
+//                    }
+//                });
+//                try {
+//                    new Thread().sleep(1000);
+//                } catch (InterruptedException ex) {
+//                    Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//                System.out.println(passos);
+//            }
         }
+    }
+    
+    public void clickedNew() {
+        String s = (String)mapList.getSelectedItem();
+        if (s.equalsIgnoreCase("Random"))
+        {
+            w = MapGenerator.getRandomMap((int)System.currentTimeMillis()).generateWorld();
+        }
+        else
+        {
+            int i = Integer.parseInt(s);
+            i--;
+            w = maps.get(i).generateWorld();
+        }
+        passos = 0;
+        agent = new MyAgent(w);
+        updateGame();
     }
     
     /**
@@ -276,6 +352,7 @@ public class GUI implements ActionListener
      */
     private void updateGame()
     {
+        
         for (int i = 0; i < 4; i++)
         {
             for (int j = 0; j < 4; j++)
@@ -313,7 +390,6 @@ public class GUI implements ActionListener
                 {
                     blocks[i][j].setBackground(Color.GRAY);
                 }
-                
                 blocks[i][j].updateUI();
                 blocks[i][j].repaint();
             }
