@@ -8,7 +8,7 @@ import java.util.Vector;
  * a simulation with random worlds over a number of games,
  * or 3) run a simulation over the worlds read from a map file.
  * 
- * @author Johan Hagelbäck
+ * @author Michael Oliveira, Mizael, João Lucas, Edith Carollaine
  */
 public class WumpusWorld {
 

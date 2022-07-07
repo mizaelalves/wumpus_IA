@@ -7,7 +7,7 @@ import java.awt.Point;
  * This class represents a Wumpus World map read
  * from the file.
  * 
- * @author Johan Hagelbäck
+ * @author Michael Oliveira, Mizael, João Lucas, Edith Carollaine
  */
 public class WorldMap
 {

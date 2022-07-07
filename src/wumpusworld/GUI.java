@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  * GUI for the Wumpus World. Only supports worlds of 
  * size 4.
  * 
- * @author Johan Hagelbäck
+ * @author Michael Oliveira, Mizael, João Lucas, Edith Carollaine
  */
 public class GUI extends JFrame implements ActionListener
 {
