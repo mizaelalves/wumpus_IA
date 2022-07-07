@@ -12,7 +12,7 @@ public class MyAgent implements Agent {
 	int rnd;
 	int wumpus = 0, pa = 0, pb = 0, minvalue = 100, t = 1, minscore = 100, k1, op, k = 1, fp = 0;
 	int c2 = 0, c3 = 0, path = 0;
-	int[][] map = new int[4][4];
+	int[][] map = new int[5][5];
 	int[] b = new int[10];
 	int pbb = 0;
 	int pd = 0;
@@ -154,7 +154,7 @@ public class MyAgent implements Agent {
 			if (map[x][y] != 3 && map[x][y] != 7 && map[x][y] != -3) {
 				if (move != 1 && (y + 1) <= 3 && c1 < 6) {
 
-					// movie right
+					// move para direita
 
 					if (map[x][y + 1] == -3) {
 
@@ -306,7 +306,7 @@ public class MyAgent implements Agent {
 			if (map[x][y] != 3 && map[x][y] != 7 && map[x][y] != -3 && pb != 1 && map[x][y] != -2) {
 				if (move != 1 && (y + 1) <= 3 && pb != 1 && c1 < 6) {
 
-					// movie right
+					// move para direita
 
 					if (map[x][y + 1] == -3 && pb != 1) {
 						c1++;
@@ -423,7 +423,7 @@ public class MyAgent implements Agent {
 
 							if (move != 1 && (y + 1) <= 3 && pa != 1 && c1 < 5) {
 
-								// movie right
+								// move para direita
 								if (map[x][y + 1] == -3) {
 
 									a[c1] = 5;
@@ -727,7 +727,7 @@ public class MyAgent implements Agent {
 					if ((x + 1) <= 3) {
 						if ((!w.isVisited(cX - 1, cY - 1) && map[x + 1][y - 1] == 1)
 								|| (map[x][y - 1] == 1 && !w.isVisited(cX - 1, cY))) {
-							// move left
+							// move para esquerda
 							t1 = 1;
 							d = 2;
 						}
@@ -736,7 +736,7 @@ public class MyAgent implements Agent {
 					if ((x - 1) >= 0)
 						if ((!w.isVisited(cX - 1, cY + 1) && map[x - 1][y - 1] == 1)
 								|| (map[x][y - 1] == 1 && !w.isVisited(cX - 1, cY))) {
-							// move left
+							// move para esquerda
 							t1 = 1;
 							d = 2;
 						}
@@ -744,7 +744,7 @@ public class MyAgent implements Agent {
 			} else {
 				if ((y - 1) >= 0)
 					if (map[x][y - 1] == 1 && !w.isVisited(cX - 1, cY)) {
-						// move left
+						// move para esquerda
 						t1 = 1;
 						d = 2;
 					}
@@ -992,7 +992,7 @@ public class MyAgent implements Agent {
 				if ((x + 1) <= 3) {
 					if ((!w.isVisited(cX - 1, cY - 1) && map[x + 1][y - 1] == 1)
 							|| (map[x][y - 1] == 1 && !w.isVisited(cX - 1, cY))) {
-						// move left
+						// move para esquerda
 						t1 = 1;
 						d = 2;
 					}
@@ -1000,8 +1000,8 @@ public class MyAgent implements Agent {
 
 				if ((x - 1) >= 0)
 					if ((!w.isVisited(cX - 1, cY + 1) && map[x - 1][y - 1] == 1)
-							|| (map[x][y - 1] == 1 && !w.isVisited(cX - 1, cY))) {
-						// move left
+					|| (map[x][y - 1] == 1 && !w.isVisited(cX - 1, cY))) {
+								// move para esquerda
 						t1 = 1;
 						d = 2;
 					}
@@ -1009,7 +1009,7 @@ public class MyAgent implements Agent {
 		} else {
 			if ((y - 1) >= 0)
 				if (map[x][y - 1] == 1 && !w.isVisited(cX - 1, cY)) {
-					// move left
+					// move para esquerda
 					t1 = 1;
 					d = 2;
 				}
@@ -1078,8 +1078,7 @@ public class MyAgent implements Agent {
 
 //-------------------------------------------------------------------------------------------	
 
-	// all the probabilities of adjacent boxes are updated when the box contains
-	// stench
+	// todas as probabilidades de caixas adjacentes são atualizadas quando a caixa contém mau cheiro
 	public void strenchMethod(int[][] map, int cX, int cY, int x, int y) {
 
 		int count = 0, Y = 0, X = 0, t1 = 0, d = 0, count1 = 0, d1 = 0;
@@ -1300,7 +1299,7 @@ public class MyAgent implements Agent {
 				if ((y - 1) >= 0) {
 					if ((x + 1) <= 3) {
 						if ((map[x + 1][y - 1] == 1)) {
-							// move left
+							// move para esquerda
 							t1 = 1;
 							d = 2;
 
@@ -1309,7 +1308,7 @@ public class MyAgent implements Agent {
 
 					if ((x - 1) >= 0)
 						if ((map[x - 1][y - 1] == 1)) {
-							// move left
+							// move para esquerda
 							t1 = 1;
 							d = 2;
 
