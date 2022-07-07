@@ -872,7 +872,7 @@ public class MyAgent implements Agent {
 					else
 						map[x][y + 1] = map[x][y + 1] + 2;
 					count++;
-					x = x;
+					X = x;
 					Y = y + 1;
 
 				}
@@ -1349,16 +1349,16 @@ public class MyAgent implements Agent {
 								pathDestination(map, a, x, y, -1, 0, 0, i, j);
 
 								switch (b[0]) {
-								case 1: // right
+								case 1: // direita
 									direction(1);
 									break;
-								case 2: // left
+								case 2: // esquerda
 									direction(2);
 									break;
-								case 3: // up
+								case 3: // cima
 									direction(3);
 									break;
-								case 4: // down
+								case 4: // baixo
 									direction(4);
 									break;
 								}
