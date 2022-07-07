@@ -307,26 +307,8 @@ public class GUI extends JFrame implements ActionListener
             {
                 agent = new MyAgent(w);
             }
-//            agent.doAction();
-//            updateGame();
-//            while (!w.gameOver()) {
-//                passos++;
-                
-//                new Thread(new Runnable() {
-//                    @Override
-//                    public void run() {
-                        agent.doAction();
-                        updateGame();
-                        
-//                    }
-//                });
-//                try {
-//                    new Thread().sleep(1000);
-//                } catch (InterruptedException ex) {
-//                    Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//                System.out.println(passos);
-//            }
+                agent.doAction();
+                updateGame();
         }
     }
     
@@ -403,7 +385,7 @@ public class GUI extends JFrame implements ActionListener
         }
         if (w.gameOver())
         {
-            status.setText("GAME OVER");
+            status.setText("JOGO FINALIZADO");
         }
         
         gamepanel.updateUI();
