@@ -2,7 +2,7 @@ package wumpusworld;
 
 /**
  * 
- * @author Michael Oliveira, Mizael, João Lucas, Edith Carollaine
+ * @author Johan Hagelbäck
  */
 public class MyAgent implements Agent {
 
