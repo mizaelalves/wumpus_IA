@@ -3,9 +3,9 @@ package wumpusworld;
 import java.io.*;
 
 /**
- * Reads the config.txt settings file.
+ *Le o arquivo de configuração config.txt
  * 
- * @author admin
+ * @author Michael Oliveira, Mizael, João Lucas, Edith Carollaine
  */
 public class Config 
 {
@@ -44,9 +44,9 @@ public class Config
     }
     
     /**
-     * Returns the path to the map file.
+     * Retorna o path do arquivo de mapa.
      * 
-     * @return Path to map file, or empty string if not found.
+     * @return Path do arquivo de mapa, ou limpo se a string não for encontrada. 
      */
     public static String getMapfile()
     {

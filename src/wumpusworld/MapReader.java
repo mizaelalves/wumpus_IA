@@ -5,7 +5,7 @@ import java.util.Vector;
 /**
  * This class read maps from a file.
  * 
- * @author Johan Hagelbäck
+ * @author Michael Oliveira, Mizael, João Lucas, Edith Carollaine
  */
 public class MapReader
 {
