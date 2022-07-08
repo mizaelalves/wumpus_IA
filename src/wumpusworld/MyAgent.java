@@ -1375,32 +1375,32 @@ public class MyAgent implements Agent {
 
 //-------------------------------------------------------------------------------------------	
 	/**
-	 * Pede ao seu agente solucionador para executar uma ação
+	 * Asks your solver agent to execute an action.
+	 * Pergunta se voce quer executar uma ação.
 	 */
 
 	public void doAction() {
 
-		// Localização do jogador
+		// localização do player
 		int cX = w.getPlayerX();
 		int cY = w.getPlayerY();
 
-		// Transformado de acordo com a matriz de mapas
-		
+		// tranforma de acordo com o array do mapa
 		int transformX = 4 - cY;
 		int transformY = cX - 1;
 
 		// -----------------------------------------------------------------
 
-		// Código dado antes
-		// Teste o ambiente
+		// Codigo dado antes
+		// teste do ambiente
 		if (w.hasBreeze(cX, cY)) {
-			System.out.println("Estou sentindo uma Brisa");
+			System.out.println("Estou em uma briza");
 		}
 		if (w.hasStench(cX, cY)) {
-			System.out.println("Estou sentindo um fedor");
+			System.out.println("Estou no fedor");
 		}
 		if (w.hasPit(cX, cY)) {
-			System.out.println("Estou no Poço");
+			System.out.println("Estou no buraco");
 		}
 		if (w.getDirection() == World.DIR_RIGHT) {
 			System.out.println("Estou virado para direita");
@@ -1423,9 +1423,44 @@ public class MyAgent implements Agent {
 				w.doAction(World.A_GRAB);
 				return;
 			}
-			if (w.hasStench(cX, cY)) 
+
+			if (k <= (fp))
+				direction(b[k]);
+			k++;
+			if (k == (fp + 1)) {
+				path = 0;
+				k = 1;
+			}
+
+		} else {
+
+			if (w.hasStench(cX, cY) && w.isInPit()) {
+
+				if (w.hasGlitter(cX, cY)) {
+					w.doAction(World.A_GRAB);
+					return;
+				}
+
+				map[transformX][transformY] = -2;
+				w.doAction(World.A_CLIMB);
 				strenchMethod(map, cX, cY, transformX, transformY);
-			else if (w.hasGlitter(cX, cY)) {
+
+			}
+
+			if (w.hasGlitter(cX, cY) && w.hasBreeze(cX, cY)) {
+				w.doAction(World.A_GRAB);
+				return;
+			}
+			if (w.hasBreeze(cX, cY) && w.hasStench(cX, cY)) {
+				if (wumpus == 0)
+					breezeAndStrenchMethod(map, cX, cY, transformX, transformY);
+				else
+					breezeMethod(map, cX, cY, transformX, transformY);
+			} else if (w.hasBreeze(cX, cY) && map[transformX][transformY] != -4 && map[transformX][transformY] != -2) {
+				breezeMethod(map, cX, cY, transformX, transformY);
+			} else if (w.hasStench(cX, cY)) {
+				strenchMethod(map, cX, cY, transformX, transformY);
+			} else if (w.hasGlitter(cX, cY)) {
 				w.doAction(World.A_GRAB);
 				return;
 			} else if (w.isInPit()) {
@@ -1481,16 +1516,16 @@ public class MyAgent implements Agent {
 									case 1:
 										direction(1);
 										break;
-									case 2: // left
+									case 2: // esquerda
 										direction(2);
 										break;
-									case 3: // up
+									case 3: // cima
 										direction(3);
 										break;
-									case 4: // down
+									case 4: // baixo
 										direction(4);
 										break;
-									case 5: // shoot
+									case 5: // tiro
 
 										w.doAction(World.A_SHOOT);
 										break;
@@ -1506,7 +1541,7 @@ public class MyAgent implements Agent {
 
 										w.doAction(World.A_SHOOT);
 										break;
-									default: // random
+									default: // aleatorio
 										break;
 									}
 
@@ -1713,7 +1748,7 @@ public class MyAgent implements Agent {
 	}
 
 	/**
-	 * Gera uma instrução aleatória para o agente
+	 * Gera uma instrução aleatória do agente
 	 */
 	public int decideRandomMove() {
 		return (int) (Math.random() * 4);
