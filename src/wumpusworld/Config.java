@@ -10,9 +10,9 @@ import java.io.*;
 public class Config 
 {
     /**
-     * Checks the options for the application ('gui', 'sim' or 'simdb').
+     * Verifica a opção da aplicação('gui', 'sim' or 'simdb').
      * 
-     * @return Option. Default is 'gui'. 
+     * @return A opção. Por padrão é 'gui'. 
      */
     public static String getOption()
     {

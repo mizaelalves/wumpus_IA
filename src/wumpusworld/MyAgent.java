@@ -10,7 +10,7 @@ public class MyAgent implements Agent {
 	int rnd;
 	int wumpus = 0, pa = 0, pb = 0, minvalue = 100, t = 1, minscore = 100, k1, op, k = 1, fp = 0;
 	int c2 = 0, c3 = 0, path = 0;
-	int[][] map = new int[5][5];
+	int[][] map = new int[4][4];
 	int[] b = new int[10];
 	int pbb = 0;
 	int pd = 0;
@@ -33,19 +33,19 @@ public class MyAgent implements Agent {
 		int i = 0, dif;
 
 		if (w.getDirection() == World.DIR_RIGHT) {
-			System.out.println("I am facing Right");
+			System.out.println("Estou virado para direita");
 			i = 1;
 		}
 		if (w.getDirection() == World.DIR_LEFT) {
-			System.out.println("I am facing Left");
+			System.out.println("Estou virado para esquerda");
 			i = 2;
 		}
 		if (w.getDirection() == World.DIR_UP) {
-			System.out.println("I am facing Up");
+			System.out.println("Estou virado para cima");
 			i = 3;
 		}
 		if (w.getDirection() == World.DIR_DOWN) {
-			System.out.println("I am facing Down");
+			System.out.println("Estou virado para baixo");
 			i = 4;
 		}
 		dif = i - x;
@@ -79,19 +79,19 @@ public class MyAgent implements Agent {
 		int i = 0, dif;
 
 		if (w.getDirection() == World.DIR_RIGHT) {
-			System.out.println("I am facing Right");
+			System.out.println("Estou virado para direita");
 			i = 1;
 		}
 		if (w.getDirection() == World.DIR_LEFT) {
-			System.out.println("I am facing Left");
+			System.out.println("Estou virado para esquerda");
 			i = 2;
 		}
 		if (w.getDirection() == World.DIR_UP) {
-			System.out.println("I am facing Up");
+			System.out.println("Estou virado para cima");
 			i = 3;
 		}
 		if (w.getDirection() == World.DIR_DOWN) {
-			System.out.println("I am facing Down");
+			System.out.println("Estou virado para baixo");
 			i = 4;
 		}
 		dif = i - x;
@@ -1402,16 +1402,16 @@ public class MyAgent implements Agent {
 			System.out.println("I am in a Pit");
 		}
 		if (w.getDirection() == World.DIR_RIGHT) {
-			System.out.println("I am facing Right");
+			System.out.println("Estou virado para direita");
 		}
 		if (w.getDirection() == World.DIR_LEFT) {
-			System.out.println("I am facing Left");
+			System.out.println("Estou virado para esquerda");
 		}
 		if (w.getDirection() == World.DIR_UP) {
-			System.out.println("I am facing Up");
+			System.out.println("Estou virado para cima");
 		}
 		if (w.getDirection() == World.DIR_DOWN) {
-			System.out.println("I am facing Down");
+			System.out.println("Estou virado para baixo");
 		}
 
 		// -----------------------------------------------------------------
