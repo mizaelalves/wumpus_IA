@@ -1,0 +1,9 @@
+{"java.home": "/usr/lib/jvm/java-11-openjdk-amd64",
+    
+"java.configuration.runtimes": [
+    {
+        "name":"JavaSE-11",
+        "path": "/usr/lib/jvm/java-11-openjdk-amd64"
+    }
+]
+}
