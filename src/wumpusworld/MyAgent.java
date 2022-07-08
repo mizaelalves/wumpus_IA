@@ -1394,13 +1394,13 @@ public class MyAgent implements Agent {
 		// Código dado antes
 		// Teste o ambiente
 		if (w.hasBreeze(cX, cY)) {
-			System.out.println("Eu estou em uma Brisa);
+			System.out.println("Estou sentindo uma Brisa");
 		}
 		if (w.hasStench(cX, cY)) {
-			System.out.println("I am in a fedor);
+			System.out.println("Estou sentindo um fedor");
 		}
 		if (w.hasPit(cX, cY)) {
-			System.out.println("I am in a Poço);
+			System.out.println("Estou no Poço");
 		}
 		if (w.getDirection() == World.DIR_RIGHT) {
 			System.out.println("Estou virado para direita");
@@ -1422,8 +1422,10 @@ public class MyAgent implements Agent {
 			if (w.hasGlitter(cX, cY)) {
 				w.doAction(World.A_GRAB);
 				return;
-			=|zxcv bnm,l.;/'123456780- if (w.hasStench(cX, cY)) 				strenchMethod(map, cX, cY, transformX, transformY);
-			} else if (w.hasGlitter(cX, cY)) {
+			}
+			if (w.hasStench(cX, cY)) 
+				strenchMethod(map, cX, cY, transformX, transformY);
+			else if (w.hasGlitter(cX, cY)) {
 				w.doAction(World.A_GRAB);
 				return;
 			} else if (w.isInPit()) {
