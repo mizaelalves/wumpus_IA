@@ -19,7 +19,7 @@ public class MyAgent implements Agent {
 	/**
 	 * Cria uma nova instancia do agente
 	 * 
-	 * @param world Current world statea
+	 * @param world Estado atual do mundo
 	 */
 	public MyAgent(World world) {
 		w = world;
