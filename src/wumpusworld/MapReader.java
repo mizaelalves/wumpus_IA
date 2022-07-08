@@ -13,7 +13,7 @@ public class MapReader
     private String mapFilename;
     
     /**
-     * Creates a new instance of the class.
+     * Cria uma nova instancia da classe.
      */
     public MapReader()
     {
@@ -22,11 +22,11 @@ public class MapReader
     }
     
     /**
-     * Read the maps from the map file and returns a Vector
-     * with the maps. The program exits if an error is
-     * encountered.
+     * Le os mapas a partir de uma arquivo de mara e retorna
+     * o vetor com os mapas. O programa existe se um error é
+     * encontrado.
      * 
-     * @return A list of map objects, or empty list if none was found. 
+     * @returnRetorna uma lista de objetos do mapa, ou vazio se a lista não for encontrada.
      */
     public Vector<WorldMap> readMaps()
     {
@@ -40,7 +40,7 @@ public class MapReader
             {
                 line = line.toUpperCase();
                 
-                //New map
+                //Novo mapa
                 if (line.startsWith("NEW"))
                 {
                     String[] t = split(line);
@@ -48,7 +48,7 @@ public class MapReader
                     wm = new WorldMap(size);
                 }
                 
-                //Pit
+                //Poço
                 if (line.startsWith("P"))
                 {
                     String[] t = split(line);
@@ -66,7 +66,7 @@ public class MapReader
                     wm.addWumpus(x,y);
                 }
                 
-                //Gold
+                //Ouro
                 if (line.startsWith("G"))
                 {
                     String[] t = split(line);
@@ -75,7 +75,7 @@ public class MapReader
                     wm.addGold(x,y);
                 }
                 
-                //End of map
+                //Fim do mapa
                 if (line.startsWith("END"))
                 {
                     maps.add(wm);
@@ -91,7 +91,7 @@ public class MapReader
             
         }
         
-        //Add some random maps
+        //Adiciona algum mapa aleatório
         maps.add(MapGenerator.getRandomMap(42));
         maps.add(MapGenerator.getRandomMap(1977));
         maps.add(MapGenerator.getRandomMap(1990));
@@ -100,9 +100,9 @@ public class MapReader
     }
     
     /**
-     * Splits a string with whitespace as delimiter.
+     * Pula uma linha com o espaço em branco delimitado
      * 
-     * @param line The string to split
+     * @param line A linha foi pulada
      * @return Tokens
      */
     private String[] split(String line)

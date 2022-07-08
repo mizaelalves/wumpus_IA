@@ -5,12 +5,10 @@ import java.awt.event.*;
 import java.awt.*;
 import java.io.File;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
- * GUI for the Wumpus World. Only supports worlds of 
- * size 4.
+ * GUI para o Wumpus World. somente suporta tamanho 4
  * 
  * @author Michael Oliveira, Mizael, João Lucas, Edith Carollaine
  */
@@ -38,7 +36,7 @@ public class GUI extends JFrame implements ActionListener
     private int passos = 0;
     
     /**
-     * Creates and start the GUI.
+     * Cria e inicia o GUI
      */
     public GUI()
     {
@@ -96,7 +94,7 @@ public class GUI extends JFrame implements ActionListener
         
         if (!checkResources())
         {
-            JOptionPane.showMessageDialog(null, "Unable to start GUI. Missing icons.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Abilite a inicialização do GUI. Icones não encontrados", "Error", JOptionPane.ERROR_MESSAGE);
             System.exit(1);
         }
         
@@ -129,9 +127,9 @@ public class GUI extends JFrame implements ActionListener
     }
     
     /**
-     * Checks if all resources (icons) are found.
+     * Verifica se todos os icones foram encontrados.
      * 
-     * @return True if all resources are found, false otherwise. 
+     * @return True se todos os icones foram encontrado, falso se não
      */
     private boolean checkResources()
     {
@@ -165,7 +163,7 @@ public class GUI extends JFrame implements ActionListener
     }
     
     /**
-     * Creates all window components.
+     * Cria todos os componentes da janela.
      */
     private void createWindow()
     {
@@ -178,8 +176,8 @@ public class GUI extends JFrame implements ActionListener
         gamepanel.setPreferredSize(new Dimension(600,600));
         gamepanel.setBackground(Color.GRAY);
         gamepanel.setLayout(new GridLayout(4,4));
-        
-        //Add blocks
+
+        //Adiciona os blocos
         blocks = new JPanel[4][4];
         for (int j = 3; j >= 0; j--)
         {
@@ -195,19 +193,21 @@ public class GUI extends JFrame implements ActionListener
         }
         frame.getContentPane().add(gamepanel);
         
-        //Add buttons panel
+        //Adiciona os botões no painel
         JPanel buttons = new JPanel();
         buttons.setPreferredSize(new Dimension(250,600));
         buttons.setLayout(new FlowLayout());
-        //Status label
+        //Status
         status = new JLabel("", SwingConstants.CENTER);
         status.setPreferredSize(new Dimension(250,25));
         buttons.add(status);
-        //Score label
+        //Pontuação
+   
         score = new JLabel("Score: 0", SwingConstants.CENTER);
         score.setPreferredSize(new Dimension(200,25));
         buttons.add(score);
-        //Buttons
+
+        //Botões
         JButton bg = new JButton("Grab - Enter");
         bg.setPreferredSize(new Dimension(90,22));
         bg.setActionCommand("GRAB");
@@ -231,11 +231,12 @@ public class GUI extends JFrame implements ActionListener
         ba.addActionListener(this);
         ba.setFocusable(false);
         buttons.add(ba);
-        //Add a delimiter
+
+        //Adiciona a delimitação
         JLabel l = new JLabel("");
         l.setPreferredSize(new Dimension(200,25));
         buttons.add(l);
-        //Fill dropdown list
+        //Preencher lista suspensa.
         Vector<String> items = new Vector<String>();
         for (int i = 0; i < maps.size(); i++)
         {
@@ -261,9 +262,9 @@ public class GUI extends JFrame implements ActionListener
     }
     
     /**
-     * Button commands.
+     * Comando de botão.
      * 
-     * @param e Button event.
+     * @param e Evento do botão.
      */
     public void actionPerformed(ActionEvent e)
     {
@@ -330,7 +331,7 @@ public class GUI extends JFrame implements ActionListener
     }
     
     /**
-     * Updates the game GUI to a new world state.
+     * Atualiza o GUI do jogo para uma novo estado do mundo.
      */
     private void updateGame()
     {
