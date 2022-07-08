@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 {
+=======
+java{
+>>>>>>> c31f15a68428b5c41739d29bdcd699e579ae4e55
   // Use o IntelliSense para saber mais sobre os atributos possíveis.
   // Focalizar para exibir as descrições dos atributos existentes.
   // Para obter mais informações, acesse: https://go.microsoft.com/fwlink/?linkid=830387
@@ -17,6 +21,7 @@
       "mainClass": "wumpusworld.WumpusWorld",
       "projectName": "WumpusWorld"
     }
+<<<<<<< HEAD
   ],
   "java.configuration.runtimes": [
     {
@@ -24,5 +29,7 @@
       "path": "/usr/lib/jvm/java-17-openjdk-amd64",
       "default": true
     },
+=======
+>>>>>>> c31f15a68428b5c41739d29bdcd699e579ae4e55
   ]
 }

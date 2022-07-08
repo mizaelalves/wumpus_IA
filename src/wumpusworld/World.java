@@ -3,11 +3,11 @@ package wumpusworld;
 import java.util.Vector;
 
 /**
- * This class handles an instance of the Wumpus World. It contains the world
- * state, which actions are available, and updates the world when an action
- * has been executed.
+ * Essa classe lida com uma instancia do Wumpus World. Ela contem o estado do
+ * mundo, onde essa ações ção disponíveis, e atualizações do mundo quando uma
+ * ação é executada.
  * 
- * @author Johan Hagelbäck
+ * @author  Michael Oliveira, Mizael, João Lucas, Edith Carollaine
  */
 public class World 
 {
@@ -22,16 +22,16 @@ public class World
     private boolean gameOver = false;   
     private int score = 0;
     
-    //Player Directions constants.
+    //Constantes da direção do Player.
     public static final int DIR_UP = 0;
     public static final int DIR_RIGHT = 1;
     public static final int DIR_DOWN = 2;
     public static final int DIR_LEFT = 3;
     
-    //Start direction
+    //Inicia a direção
     private int dir = DIR_RIGHT;
     
-    //Percepts constants.
+    //Contantes da percepção.
     public static final String BREEZE = "B";
     public static final String STENCH = "S";
     public static final String PIT = "P";
@@ -40,7 +40,7 @@ public class World
     public static final String GOLD = "T";
     public static final String UNKNOWN = "U";
     
-    //Actions constants.
+    //Constantes da ação.
     public static final String A_MOVE = "m";
     public static final String A_GRAB = "g";
     public static final String A_CLIMB = "c";
@@ -49,11 +49,11 @@ public class World
     public static final String A_TURN_RIGHT = "r";
     
     /**
-     * Creates a new Wumpus World. The Wumpus World works with
-     * any size 4 or larger, but only size 4 is supported by
-     * the GUI.
+     * Cria um novo Wumpus World. O Wumpus World trabalha com
+     * qualquer tamanho 4 ou maior, mas somente o tamanho 4 é
+     * suportado pelo GUI.
      * 
-     * @param size Size of the world.
+     * @param size Tamanho do mundo.
      */
     public World(int size)
     {
@@ -80,9 +80,9 @@ public class World
         this.w=w1;
     }
     /**
-     * Returns the current score.
+     * Retorna a pontuação atual.
      * 
-     * @return The score.
+     * @return Apontuação.
      */
     public int getScore()
     {
@@ -91,8 +91,9 @@ public class World
     
     /**
      * Returns the size of this Wumpus World.
+     * Retorna o tamanho do mundo.
      * 
-     * @return The size 
+     * @return O mundo
      */
     public int getSize()
     {
@@ -100,9 +101,9 @@ public class World
     }
     
     /**
-     * Checks if the game has ended or not.
+     * Verifica se o jogo acabou ou não.
      * 
-     * @return True if game is over, false if not.
+     * @return True se o jogo acabou, false if não.
      */
     public boolean gameOver()
     {
@@ -110,9 +111,9 @@ public class World
     }
     
     /**
-     * Returns player X position.
+     * Retorna a Posição X do player.
      * 
-     * @return X position.
+     * @return Posição X.
      */
     public int getPlayerX()
     {
@@ -120,9 +121,9 @@ public class World
     }
     
     /**
-     * Returns player Y position.
+     * Retorna a Posição Y do player.
      * 
-     * @return Y position.
+     * @return Posição Y.
      */
     public int getPlayerY()
     {
@@ -130,10 +131,9 @@ public class World
     } 
            
     /**
-     * Checks if the player is in a pit and needs to
-     * climb up.
+     * Verifica se o player está em um poço e precisa pular.
      * 
-     * @return True if in a pit, false otherwise.
+     * @return True se está em um poço, false se não.
      */
     public boolean isInPit()
     {
@@ -141,9 +141,9 @@ public class World
     }
     
     /**
-     * Checks if the player has the arrow left.
+     * Verifica se o player tem uma flecha.
      * 
-     * @return True if player has the arrow, false otherwise.
+     * @return True se o playser tem uma flecha, False se não.
      */
     public boolean hasArrow()
     {
@@ -151,9 +151,9 @@ public class World
     }
     
     /**
-     * Checks if the Wumpus is alive.
+     * Verifica se o Wumpus está vivo
      * 
-     * @return True if Wumpus is alive, false otherwise.
+     * @return True se o Wumpus está vivo, False se não.
      */
     public boolean wumpusAlive()
     {
@@ -161,9 +161,9 @@ public class World
     }
     
     /**
-     * Checks if the player carries the gold treasure.
+     * Verifica se o player carrega o ouro.
      * 
-     * @return True if player has the gold, false otherwise.
+     * @return True se o player esta com o ouro, False se não
      */
     public boolean hasGold()
     {
@@ -171,9 +171,9 @@ public class World
     }
     
     /**
-     * Returns the current direction of the player.
+     * Retorna a direção do player.
      * 
-     * @return Direction (see direction constants)
+     * @return Direção
      */
     public int getDirection()
     {
@@ -181,13 +181,12 @@ public class World
     }
     
     /**
-     * Checks if a square has a breeze. Returns false
-     * if the position is invalid, or if the square is
-     * unknown.
+     * Verifica se o bloco tem uma brisa. Retorna false
+     * se a posição é invalida, ou contem um bloco desconhecido.
      * 
-     * @param x X position
-     * @param y Y position
-     * @return True if the square has a breeze
+     * @param x Posição X
+     * @param y Posição Y
+     * @return True se o bloco tem uma brisa
      */
     public boolean hasBreeze(int x, int y)
     {
@@ -201,13 +200,12 @@ public class World
     }
     
     /**
-     * Checks if a square has a stench. Returns false
-     * if the position is invalid, or if the square is
-     * unknown.
+     * Verifica se o bloco tem um fedor. Retorna false
+     * se a posição é invalida, ou contem um bloco desconhecido.
      * 
-     * @param x X position
-     * @param y Y position
-     * @return True if the square has a stench
+     * @param x Posição X
+     * @param y Posição Y
+     * @return True se o bloco tem um fedor.
      */
     public boolean hasStench(int x, int y)
     {
@@ -221,13 +219,12 @@ public class World
     }
     
     /**
-     * Checks if a square has glitter. Returns false
-     * if the position is invalid, or if the square is
-     * unknown.
+     * Verifica se o bloco tem um brilho. Retorna false
+     * se a posição é invalida, ou contem um bloco desconhecido.
      * 
-     * @param x X position
-     * @param y Y position
-     * @return True if the square has glitter
+     * @param x Posição X
+     * @param y Posição Y
+     * @return True o bloco tem um brilho
      */
     public boolean hasGlitter(int x, int y)
     {
@@ -241,13 +238,12 @@ public class World
     }
     
     /**
-     * Checks if a square has a pit. Returns false
-     * if the position is invalid, or if the square is
-     * unknown.
+     * Verifica se o quadrado é um poço. Retorna false
+     * se a posição é invalida, ou contem um bloco desconhecido.
      * 
-     * @param x X position
-     * @param y Y position
-     * @return True if the square has a pit
+     * @param x Posição X
+     * @param y Posição Y
+     * @return True se o bloco é um poço
      */
     public boolean hasPit(int x, int y)
     {
@@ -261,13 +257,12 @@ public class World
     }
     
     /**
-     * Checks if the Wumpus is in a square. Returns false
-     * if the position is invalid, or if the square is
-     * unknown.
+     * Verifica se o Wumpus esta no bloco. Retorna false
+     * se a posição é invalida ou o bloco é desconhecido.
      * 
-     * @param x X position
-     * @param y Y position
-     * @return True if the Wumpus is in the square
+     * @param x Posição X
+     * @param y Posição Y
+     * @return True se o Wumpus esta no bloco
      */
     public boolean hasWumpus(int x, int y)
     {
@@ -281,11 +276,11 @@ public class World
     }
     
      /**
-     * Checks if the player is in a square.
+     * Verifica se o player esta no bloco.
      * 
-     * @param x X position
-     * @param y Y position
-     * @return True if the player is in the square
+     * @param x Posição X
+     * @param y Posição Y
+     * @return True se o player esta no bloco
      */
     public boolean hasPlayer(int x, int y)
     {
@@ -297,12 +292,12 @@ public class World
     }
     
      /**
-     * Checks if a square is visited. Returns false
-     * if the position is invalid.
+     * Verifica se o bloco foi visitado. Retorna false
+     * se a posição é invalida
      * 
-     * @param x X position
-     * @param y Y position
-     * @return True if the square is visited
+     * @param x Posição X
+     * @param y Posição Y
+     * @return True se o bloco foi visitado
      */
     public boolean isVisited(int x, int y)
     {
@@ -312,11 +307,11 @@ public class World
     }
     
     /**
-     * Checks if a square is unknown. Returns false
-     * if the position is invalid.
+     * verifica se o bloco é desconhecido, retorna false
+     * se é uma posição invalida.
      * 
-     * @param x X position
-     * @param y Y position
+     * @param x Posição X
+     * @param y Posição Y
      * @return True if the square is unknown
      */
     public boolean isUnknown(int x, int y)
@@ -330,12 +325,12 @@ public class World
     }
     
     /**
-     * Checks if a square is valid, i.e. inside
-     * the bounds of the game world.
+     * Verifica se o bloco é valido, dentro 
+     * dos limites do mundo
      * 
-     * @param x X position
-     * @param y Y position
-     * @return True if the square is valid
+     * @param x Posição X
+     * @param y Posição Y
+     * @return True se o bloco é valido
      */
     public boolean isValidPosition(int x, int y)
     {
@@ -347,11 +342,11 @@ public class World
     }
     
     /**
-     * Adds a percept to a square.
+     * Adiciona percepção ao bloco.
      * 
-     * @param x X position
-     * @param y Y position
-     * @param s Percept to add (see Percept constants)
+     * @param x Posição X
+     * @param y Posição Y
+     * @param s Adiciona a percepção
      */
     private void append(int x, int y, String s)
     {
@@ -365,10 +360,10 @@ public class World
     }
     
     /**
-     * Adds the Wumpus to a square.
+     * Adiciona o Wumpus a um bloco.
      * 
-     * @param x X position
-     * @param y Y position
+     * @param x Posição X
+     * @param y Posição Y
      */
     public void addWumpus(int x, int y)
     {
@@ -402,10 +397,10 @@ public class World
     }
     
     /**
-     * Adds a pit to a square.
+     * Adiciona o poçõ no quadrado
      * 
-     * @param x X position
-     * @param y Y position
+     * @param x Posição X
+     * @param y Posição Y
      */
     public void addPit(int x, int y)
     {
@@ -420,10 +415,11 @@ public class World
     }
     
     /**
-     * Adds the gold treasure to a square.
+
+     * Adiciona o tesouro em um bloco
      * 
-     * @param x X position
-     * @param y Y position 
+     * @param x Posição X
+     * @param y Posição Y
      */
     public void addGold(int x, int y)
     {
@@ -434,10 +430,10 @@ public class World
     }
     
     /**
-     * Sets that a square has been visited.
+     * Set se o bloco foi visitado.
      * 
-     * @param x X position
-     * @param y Y position 
+     * @param x Posição X
+     * @param y Posição Y
      */
     private void setVisited(int x, int y)
     {
@@ -448,16 +444,16 @@ public class World
     }
     
     /**
-     * Executes an action in the Wumpus World.
+     * Executa uma ação no mundo
      * 
-     * @param a Action string (see Action constants)
-     * @return True if the action was successful, false if action failed.
+     * @param a Ve ação constatate
+     * @return True se a ação foi um sucesso, senão ação falhou
      */
     public boolean doAction(String a)
     {
         if (gameOver) return false;
         
-        //Each action costs 1 score
+        //Essa função custa um ponto
         score -= 1;
         
         if (a.equals(A_MOVE))
@@ -508,12 +504,12 @@ public class World
             isInPit = false;
         }
         
-        //Action failed
+        //Ação falhou
         return false;
     }
     
     /**
-     * Checks if the Wumpus has been hit by the arrow.
+     * Verifica se o Wumpus levou um tiro.
      */
     private void shoot()
     {
@@ -548,8 +544,8 @@ public class World
     }
     
     /**
-     * Removes the Wumpus (and Stench) from the Wumpus World.
-     * Used when the Wumpus has been hit by the arrow.
+     * Remove o Wumpus (e o cheiro) do Wumpus World.
+     * Usado quando o Wumpus leva um hit.
      */
     private void removeWumpus()
     {
@@ -568,13 +564,13 @@ public class World
     /**
      * Executes a move forward to a new square.
      * 
-     * @param nX New X position
-     * @param nY New Y position
-     * @return True if the move actions was successful, false otherwise
+     * @param nX Nova posição para X
+     * @param nY Nova posição para Y
+     * @return True se o movimento foi ocorrido com sucesso, False para o outro lado
      */
     private boolean move(int nX, int nY)
     {
-        //Check if valid
+        //verifica se é valida
         if (!isValidPosition(nX, nY))
         {
             return false;

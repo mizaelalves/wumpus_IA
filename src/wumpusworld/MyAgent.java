@@ -1,10 +1,8 @@
 package wumpusworld;
 
 /**
- * Contains starting code for creating your own Wumpus World agent. Currently
- * the agent only make a random decision each turn.
  * 
- * @author Johan Hagelbäck
+ * @author Michael Oliveira, Mizael, João Lucas, Edith Carollaine
  */
 public class MyAgent implements Agent {
 
@@ -19,9 +17,9 @@ public class MyAgent implements Agent {
 	int path1 = 0;
 
 	/**
-	 * Creates a new instance of your solver agent.
+	 * Cria uma nova instancia do agente
 	 * 
-	 * @param world Current world statea
+	 * @param world Estado atual do mundo
 	 */
 	public MyAgent(World world) {
 		w = world;
@@ -29,30 +27,29 @@ public class MyAgent implements Agent {
 
 //-----------------------------------------------------------------
 
-	// Direct Method which takes integer as input
-	// [ possible values :1-Right,2-Left,3-Up,4-down]
-	// 12+4 possibilities
+	// Método de direcionamento que recebe um inteiro como entrada
+	// [ Possíveis valores :1-Direita,2-Esquerda,3-Cima,4-Baixo]
 	public void direction(int x) {
 		int i = 0, dif;
 
 		if (w.getDirection() == World.DIR_RIGHT) {
-			System.out.println("I am facing Right");
+			System.out.println("Estou virado para direita");
 			i = 1;
 		}
 		if (w.getDirection() == World.DIR_LEFT) {
-			System.out.println("I am facing Left");
+			System.out.println("Estou virado para esquerda");
 			i = 2;
 		}
 		if (w.getDirection() == World.DIR_UP) {
-			System.out.println("I am facing Up");
+			System.out.println("Estou virado para cima");
 			i = 3;
 		}
 		if (w.getDirection() == World.DIR_DOWN) {
-			System.out.println("I am facing Down");
+			System.out.println("Estou virado para baixo");
 			i = 4;
 		}
 		dif = i - x;
-
+                
 		if (dif == 0)
 			w.doAction(World.A_MOVE);
 		if ((i == 1 && x == 2) || (x == 1 && i == 2) || (i == 3 && x == 4) || (x == 3 && i == 4)) {
@@ -76,26 +73,25 @@ public class MyAgent implements Agent {
 
 // -----------------------------------------------------------------
 
-	// Shoot arrow method which takes direction as input shoots the wumpus
-	// [ possible values :1-Right,2-Left,3-Up,4-down]
-	// 12+4 possibilities
+	// Método de tiro tomado na direção do Wumpus
+	// [ Valores possíveis :1-Direita,2-Esquerda,3-Cima,4-Baixo]
 	public void arrow(int x) {
 		int i = 0, dif;
 
 		if (w.getDirection() == World.DIR_RIGHT) {
-			System.out.println("I am facing Right");
+			System.out.println("Estou virado para direita");
 			i = 1;
 		}
 		if (w.getDirection() == World.DIR_LEFT) {
-			System.out.println("I am facing Left");
+			System.out.println("Estou virado para esquerda");
 			i = 2;
 		}
 		if (w.getDirection() == World.DIR_UP) {
-			System.out.println("I am facing Up");
+			System.out.println("Estou virado para cima");
 			i = 3;
 		}
 		if (w.getDirection() == World.DIR_DOWN) {
-			System.out.println("I am facing Down");
+			System.out.println("Estou virado para baixo");
 			i = 4;
 		}
 		dif = i - x;
@@ -122,10 +118,10 @@ public class MyAgent implements Agent {
 
 //-------------------------------------------------------------------------------------------	
 
-	// it will provide a shortest path between the current node and destination node
-	// this method is used when the game is left with very less unvisited nodes.
-	// and also it is safe path
-	// it will fall on pit if there is no path exists
+	// esse método é usado quando o jogo fica com muito menos nós não visitados
+        // ele fornecerá um caminho mais curto entre o nó atual e o nó de destino
+        // e também é um caminho seguro
+        // cairá no poço se não houver caminho
 	public void pathDestination(int[][] map, int[] a, int x, int y, int c1, int move, int score, int fx, int fd) {
 
 		int k;
@@ -154,7 +150,7 @@ public class MyAgent implements Agent {
 			if (map[x][y] != 3 && map[x][y] != 7 && map[x][y] != -3) {
 				if (move != 1 && (y + 1) <= 3 && c1 < 6) {
 
-					// movie right
+					// move para direita
 
 					if (map[x][y + 1] == -3) {
 
@@ -306,7 +302,7 @@ public class MyAgent implements Agent {
 			if (map[x][y] != 3 && map[x][y] != 7 && map[x][y] != -3 && pb != 1 && map[x][y] != -2) {
 				if (move != 1 && (y + 1) <= 3 && pb != 1 && c1 < 6) {
 
-					// movie right
+					// move para direita
 
 					if (map[x][y + 1] == -3 && pb != 1) {
 						c1++;
@@ -423,7 +419,7 @@ public class MyAgent implements Agent {
 
 							if (move != 1 && (y + 1) <= 3 && pa != 1 && c1 < 5) {
 
-								// movie right
+								// move para direita
 								if (map[x][y + 1] == -3) {
 
 									a[c1] = 5;
@@ -500,9 +496,9 @@ public class MyAgent implements Agent {
 
 //-------------------------------------------------------------------------------------------	
 
-	// if the box contains both the breeze and stench the methid will be executed
-	// will see the probabilities of adjacent blocks and move accordingly
-	// and update the probabilities to the adjacent boxes.
+	// se a posição contiver tanto a brisa quanto o fedor, o método será executado
+	// verá as probabilidades das posições adjacentes e se moverá de acordo
+	// e atualiza as probabilidades para posições adjacentes.
 	public void breezeAndStrenchMethod(int[][] map, int cX, int cY, int x, int y) {
 		int count = 0, Y = 0, X = 0, t1 = 0, d = 0, count1 = 0, d1 = 0;
 
@@ -727,7 +723,7 @@ public class MyAgent implements Agent {
 					if ((x + 1) <= 3) {
 						if ((!w.isVisited(cX - 1, cY - 1) && map[x + 1][y - 1] == 1)
 								|| (map[x][y - 1] == 1 && !w.isVisited(cX - 1, cY))) {
-							// move left
+							// move para esquerda
 							t1 = 1;
 							d = 2;
 						}
@@ -736,7 +732,7 @@ public class MyAgent implements Agent {
 					if ((x - 1) >= 0)
 						if ((!w.isVisited(cX - 1, cY + 1) && map[x - 1][y - 1] == 1)
 								|| (map[x][y - 1] == 1 && !w.isVisited(cX - 1, cY))) {
-							// move left
+							// move para esquerda
 							t1 = 1;
 							d = 2;
 						}
@@ -744,7 +740,7 @@ public class MyAgent implements Agent {
 			} else {
 				if ((y - 1) >= 0)
 					if (map[x][y - 1] == 1 && !w.isVisited(cX - 1, cY)) {
-						// move left
+						// move para esquerda
 						t1 = 1;
 						d = 2;
 					}
@@ -788,19 +784,19 @@ public class MyAgent implements Agent {
 							pathDestination(map, a, x, y, -1, 0, 0, i, j);
 
 							switch (b[0]) {
-							case 1:
+							case 1: // direita
 								direction(1);
 								break;
-							case 2: // left
+							case 2: // esquerda
 								direction(2);
 								break;
-							case 3: // up
+							case 3: // cima
 								direction(3);
 								break;
-							case 4: // down
+							case 4: // baixo
 								direction(4);
 								break;
-							case 5: // shoot
+							case 5: // tiro
 
 								w.doAction(World.A_SHOOT);
 								break;
@@ -872,7 +868,7 @@ public class MyAgent implements Agent {
 					else
 						map[x][y + 1] = map[x][y + 1] + 2;
 					count++;
-					x = x;
+					X = x;
 					Y = y + 1;
 
 				}
@@ -992,7 +988,7 @@ public class MyAgent implements Agent {
 				if ((x + 1) <= 3) {
 					if ((!w.isVisited(cX - 1, cY - 1) && map[x + 1][y - 1] == 1)
 							|| (map[x][y - 1] == 1 && !w.isVisited(cX - 1, cY))) {
-						// move left
+						// move para esquerda
 						t1 = 1;
 						d = 2;
 					}
@@ -1000,8 +996,8 @@ public class MyAgent implements Agent {
 
 				if ((x - 1) >= 0)
 					if ((!w.isVisited(cX - 1, cY + 1) && map[x - 1][y - 1] == 1)
-							|| (map[x][y - 1] == 1 && !w.isVisited(cX - 1, cY))) {
-						// move left
+					|| (map[x][y - 1] == 1 && !w.isVisited(cX - 1, cY))) {
+								// move para esquerda
 						t1 = 1;
 						d = 2;
 					}
@@ -1009,7 +1005,7 @@ public class MyAgent implements Agent {
 		} else {
 			if ((y - 1) >= 0)
 				if (map[x][y - 1] == 1 && !w.isVisited(cX - 1, cY)) {
-					// move left
+					// move para esquerda
 					t1 = 1;
 					d = 2;
 				}
@@ -1049,16 +1045,16 @@ public class MyAgent implements Agent {
 							minscore = 100;
 							pathDestination(map, a, x, y, -1, 0, 0, i, j);
 							switch (a[0]) {
-							case 1: // right
+							case 1: // direta
 								direction(1);
 								break;
-							case 2: // left
+							case 2: // esquerda
 								direction(2);
 								break;
-							case 3: // up
+							case 3: // cima
 								direction(3);
 								break;
-							case 4: // down
+							case 4: // baixo
 								direction(4);
 								break;
 							}
@@ -1078,8 +1074,7 @@ public class MyAgent implements Agent {
 
 //-------------------------------------------------------------------------------------------	
 
-	// all the probabilities of adjacent boxes are updated when the box contains
-	// stench
+	// todas as probabilidades de caixas adjacentes são atualizadas quando a caixa contém mau cheiro
 	public void strenchMethod(int[][] map, int cX, int cY, int x, int y) {
 
 		int count = 0, Y = 0, X = 0, t1 = 0, d = 0, count1 = 0, d1 = 0;
@@ -1300,7 +1295,7 @@ public class MyAgent implements Agent {
 				if ((y - 1) >= 0) {
 					if ((x + 1) <= 3) {
 						if ((map[x + 1][y - 1] == 1)) {
-							// move left
+							// move para esquerda
 							t1 = 1;
 							d = 2;
 
@@ -1309,7 +1304,7 @@ public class MyAgent implements Agent {
 
 					if ((x - 1) >= 0)
 						if ((map[x - 1][y - 1] == 1)) {
-							// move left
+							// move para esquerda
 							t1 = 1;
 							d = 2;
 
@@ -1350,16 +1345,16 @@ public class MyAgent implements Agent {
 								pathDestination(map, a, x, y, -1, 0, 0, i, j);
 
 								switch (b[0]) {
-								case 1: // right
+								case 1: // direita
 									direction(1);
 									break;
-								case 2: // left
+								case 2: // esquerda
 									direction(2);
 									break;
-								case 3: // up
+								case 3: // cima
 									direction(3);
 									break;
-								case 4: // down
+								case 4: // baixo
 									direction(4);
 									break;
 								}
@@ -1381,42 +1376,43 @@ public class MyAgent implements Agent {
 //-------------------------------------------------------------------------------------------	
 	/**
 	 * Asks your solver agent to execute an action.
+	 * Pergunta se voce quer executar uma ação.
 	 */
 
 	public void doAction() {
 
-		// Location of the player
+		// localização do player
 		int cX = w.getPlayerX();
 		int cY = w.getPlayerY();
 
-		// transformed according to the map array
+		// tranforma de acordo com o array do mapa
 		int transformX = 4 - cY;
 		int transformY = cX - 1;
 
 		// -----------------------------------------------------------------
 
-		// code given before
-		// Test the environment
+		// Codigo dado antes
+		// teste do ambiente
 		if (w.hasBreeze(cX, cY)) {
-			System.out.println("I am in a Breeze");
+			System.out.println("Estou em uma briza");
 		}
 		if (w.hasStench(cX, cY)) {
-			System.out.println("I am in a Stench");
+			System.out.println("Estou no fedor");
 		}
 		if (w.hasPit(cX, cY)) {
-			System.out.println("I am in a Pit");
+			System.out.println("Estou no buraco");
 		}
 		if (w.getDirection() == World.DIR_RIGHT) {
-			System.out.println("I am facing Right");
+			System.out.println("Estou virado para direita");
 		}
 		if (w.getDirection() == World.DIR_LEFT) {
-			System.out.println("I am facing Left");
+			System.out.println("Estou virado para esquerda");
 		}
 		if (w.getDirection() == World.DIR_UP) {
-			System.out.println("I am facing Up");
+			System.out.println("Estou virado para cima");
 		}
 		if (w.getDirection() == World.DIR_DOWN) {
-			System.out.println("I am facing Down");
+			System.out.println("Estou virado para baixo");
 		}
 
 		// -----------------------------------------------------------------
@@ -1520,16 +1516,16 @@ public class MyAgent implements Agent {
 									case 1:
 										direction(1);
 										break;
-									case 2: // left
+									case 2: // esquerda
 										direction(2);
 										break;
-									case 3: // up
+									case 3: // cima
 										direction(3);
 										break;
-									case 4: // down
+									case 4: // baixo
 										direction(4);
 										break;
-									case 5: // shoot
+									case 5: // tiro
 
 										w.doAction(World.A_SHOOT);
 										break;
@@ -1545,7 +1541,7 @@ public class MyAgent implements Agent {
 
 										w.doAction(World.A_SHOOT);
 										break;
-									default: // random
+									default: // aleatorio
 										break;
 									}
 
@@ -1752,7 +1748,7 @@ public class MyAgent implements Agent {
 	}
 
 	/**
-	 * Genertes a random instruction for the Agent.
+	 * Gera uma instrução aleatória do agente
 	 */
 	public int decideRandomMove() {
 		return (int) (Math.random() * 4);

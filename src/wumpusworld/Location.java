@@ -1,33 +1,32 @@
 package wumpusworld;
 
 /**
- * This class is used by the agent when searchin for new
- * squares to move to. It contains the position for a 
- * square, and a priority. Lower priovalues = higher
- * priority.
+ * Essa classe é usada por um agente quando procura por
+ * um novo bloco para se mover, Ele contem aposição para um
+ * quadrado, e uma prioridade. Baixo valores prévios = alta prioridade
  * 
- * @author Johan Hagelbäck
+ * @author Michael Oliveira, Mizael, João Lucas, Edith Carollaine
  */
 public class Location implements Comparable
 {
     /**
-     * X position
+     * posição X
      */
     public int x;
     /**
-     * Y position
+     * posição Y
      */
     public int y;
     /**
-     * Priority value
+     * Valor da prioridade
      */
     public int prio;
     
     /**
-     * Creates a new Location instance.
+     * Cria uma nova instancia da localização
      * 
-     * @param x X position
-     * @param y Y position
+     * @param x posição X
+     * @param y posição Y
      */
     public Location(int x, int y)
     {
@@ -37,11 +36,11 @@ public class Location implements Comparable
     }
     
     /**
-     * Creates a new Location instance.
+     * Cria uma nova instancia da localização
      * 
-     * @param x X position
-     * @param y Y position
-     * @param prio Priority value
+     * @param x posição X
+     * @param y posição Y
+     * @param prio Valor da prioridade
      */
     public Location(int x, int y, int prio)
     {
@@ -51,11 +50,11 @@ public class Location implements Comparable
     }
     
     /**
-     * Used for sorting lists of possible goals. Lower prio
-     * value = higher priority.
+     * Usado para sortear a listar o valor das 
+     * possibilidades = alta prioridade.
      * 
-     * @param o Location object.
-     * @return 1 if prio(o) > prio(this). -1 if prio(o) > prio(this). 0 otherwise.
+     * @param o Localização do objeto
+     * @return 1 if prio(o) > prio(this). -1 if prio(o) > prio(this). 0 se não.
      */
     public int compareTo(Object o)
     {
