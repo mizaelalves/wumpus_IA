@@ -225,8 +225,8 @@ public class MyAgent implements Agent {
 
 //-------------------------------------------------------------------------------------------	
 
-	// if all the surrounded unvisited nodes contain breezes it gives the optimal
-	// path with less probability
+	// se todos os nós não visitados contiverem brisas, ele fornecerá o caminho ideal
+	// com menos probabilidade
 
 	public void pathbreeze(int[][] map, int[] a, int x, int y, int c1, int move) {
 		int l = 0;
@@ -379,7 +379,7 @@ public class MyAgent implements Agent {
 
 //-------------------------------------------------------------------------------------------	
 
-	// it will find the best path to unvisited safe node.
+	// ele encontrará o melhor caminho para o nó seguro não visitado.
 	public void path(int[][] map, int[] a, int x, int y, int c1, int move) {
 
 		if (x <= 3 && y <= 3 && x >= 0 && y >= 0)
@@ -829,8 +829,8 @@ public class MyAgent implements Agent {
 
 //-------------------------------------------------------------------------------------------	
 
-	// calculating the probabilites of adjacent blocks are calculated and updated
-	// when the box contains breeze.
+	// calculando as probabilidades dos blocos adjacentes serem calculados e atualizados
+	// quando a caixa contém brisa.
 	public void breezeMethod(int[][] map, int cX, int cY, int x, int y) {
 
 		int count = 0, t1 = 0, d = 0, X = 0, Y = 0;
