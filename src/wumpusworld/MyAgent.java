@@ -1375,7 +1375,6 @@ public class MyAgent implements Agent {
 
 //-------------------------------------------------------------------------------------------	
 	/**
-	 * Asks your solver agent to execute an action.
 	 * Pergunta se voce quer executar uma ação.
 	 */
 
